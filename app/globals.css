@@ -1,26 +1,312 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* ── Colors ── */
+  --color-primary: #4e607f;
+  --color-primary-dim: #425472;
+  --color-primary-fixed: #c0d2f7;
+  --color-primary-fixed-dim: #b2c4e8;
+  --color-primary-container: #c0d2f7;
+  --color-on-primary: #f8f8ff;
+  --color-on-primary-fixed: #233451;
+  --color-on-primary-fixed-variant: #405170;
+  --color-on-primary-container: #364866;
+
+  --color-secondary: #565f72;
+  --color-secondary-dim: #4a5365;
+  --color-secondary-fixed: #d9e3f9;
+  --color-secondary-fixed-dim: #cbd4ea;
+  --color-secondary-container: #d9e3f9;
+  --color-on-secondary: #f8f8ff;
+  --color-on-secondary-fixed: #364051;
+  --color-on-secondary-fixed-variant: #535c6e;
+  --color-on-secondary-container: #495264;
+
+  --color-tertiary: #665882;
+  --color-tertiary-dim: #5a4c75;
+  --color-tertiary-fixed: #deccfd;
+  --color-tertiary-fixed-dim: #d0beef;
+  --color-tertiary-container: #deccfd;
+  --color-on-tertiary: #fef7ff;
+  --color-on-tertiary-fixed: #3c2f56;
+  --color-on-tertiary-fixed-variant: #594b74;
+  --color-on-tertiary-container: #50426b;
+
+  --color-surface: #f8f9fa;
+  --color-surface-bright: #f8f9fa;
+  --color-surface-dim: #d5dbdd;
+  --color-surface-variant: #dee3e6;
+  --color-surface-tint: #4e607f;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f1f4f5;
+  --color-surface-container: #ebeef0;
+  --color-surface-container-high: #e5e9eb;
+  --color-surface-container-highest: #dee3e6;
+  --color-on-surface: #2d3335;
+  --color-on-surface-variant: #5a6062;
+
+  --color-background: #f8f9fa;
+  --color-on-background: #2d3335;
+
+  --color-outline: #767c7e;
+  --color-outline-variant: #adb3b5;
+
+  --color-inverse-primary: #c0d2f7;
+  --color-inverse-surface: #0c0f10;
+  --color-inverse-on-surface: #9b9d9e;
+
+  --color-error: #a83836;
+  --color-error-dim: #67040d;
+  --color-error-container: #fa746f;
+  --color-on-error: #fff7f6;
+  --color-on-error-container: #6e0a12;
+
+  /* ── Border Radius ── */
+  --radius-DEFAULT: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* ── Font Families ── */
+  --font-headline: "Plus Jakarta Sans", sans-serif;
+  --font-body: "Manrope", sans-serif;
+  --font-label: "Manrope", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ── Base ── */
+body {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ── Material Symbols ── */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ── 3D Flashcard helpers ── */
+.perspective-1000 { perspective: 1000px; }
+.preserve-3d { transform-style: preserve-3d; }
+.backface-hidden { backface-visibility: hidden; }
+.rotate-y-180 { transform: rotateY(180deg); }
+
+/* ── Accessibility: respect user motion preference ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .preserve-3d { transform-style: flat; }
+  .rotate-y-180 { transform: none; }
+}
+
+/* ── Scroll & entrance animations ── */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Korean character floating drift */
+@keyframes han-drift {
+  0%, 100% {
+    transform: translateY(0px) rotate(-3deg);
+    opacity: 0.12;
+  }
+  33% {
+    transform: translateY(-18px) rotate(2deg);
+    opacity: 0.22;
+  }
+  66% {
+    transform: translateY(-8px) rotate(-1deg);
+    opacity: 0.16;
+  }
+}
+
+/* Shimmer sweep for skeleton/highlight */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Gentle float for decorative elements */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+/* Pulse glow for CTA */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(78, 96, 127, 0); }
+  50% { box-shadow: 0 0 0 8px rgba(78, 96, 127, 0.15); }
+}
+
+/* ── Utility animation classes ── */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.4) 50%,
+    transparent 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 2s linear infinite;
+}
+
+/* ── Image hover zoom wrapper ── */
+.img-zoom {
+  overflow: hidden;
+}
+.img-zoom img {
+  transition: transform 0.5s ease;
+}
+.img-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* ── Card hover lift ── */
+.card-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(45, 51, 53, 0.10);
+}
+
+/* ── Staggered fade-in children ── */
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.10s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.20s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.30s; }
+
+/* ── Slide-in from left (page headers) ── */
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── Scale-in (badges, chips) ── */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ── Ripple click effect ── */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.35;
+  }
+  100% {
+    transform: scale(3.5);
+    opacity: 0;
+  }
+}
+
+/* ── Shimmer card hover sweep ── */
+@keyframes shimmer-sweep {
+  0%   { left: -60%; }
+  100% { left: 130%; }
+}
+
+/* ── Bounce-in for score/stat numbers ── */
+@keyframes bounce-in {
+  0%   { transform: scale(0.5); opacity: 0; }
+  60%  { transform: scale(1.15); opacity: 1; }
+  80%  { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+/* ── Scroll-reveal: hidden state ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.reveal-left {
+  transform: translateX(-28px);
+}
+.reveal.reveal-scale {
+  transform: scale(0.93);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Ripple button ── */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+.btn-ripple .ripple-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+  animation: ripple 0.55s ease-out forwards;
+}
+
+/* ── Card shimmer ── */
+.card-shimmer {
+  position: relative;
+}
+
+/* ── Pulse-glow CTA ── */
+.btn-pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+/* ── Bounce-in utility ── */
+.animate-bounce-in {
+  animation: bounce-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Stagger for quiz choices ── */
+.stagger-quiz > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-quiz > *:nth-child(2) { animation-delay: 0.12s; }
+.stagger-quiz > *:nth-child(3) { animation-delay: 0.19s; }
+.stagger-quiz > *:nth-child(4) { animation-delay: 0.26s; }
+
+/* ── Smooth page scroll ── */
+html {
+  scroll-behavior: smooth;
 }
