@@ -32,21 +32,29 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full backdrop-blur-xl bg-surface-container-lowest/80 border-b border-outline-variant/20 min-h-[64px]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <header className="sticky top-0 z-50 w-full backdrop-blur-xl bg-surface-container-lowest/80 border-b border-outline-variant/20 min-h-[72px]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-[72px] md:h-20 flex items-center justify-between">
           {/* Logo */}
           <Link
             href="/"
             className="shrink-0 cursor-pointer flex items-center"
-            aria-label="Huyên Korean — Trang chủ"
+            aria-label="Tiếng Hàn Đơn Giản — Trang chủ"
           >
             <Image
               src="/logo.svg"
-              alt="Huyên Korean"
-              width={156}
-              height={42}
+              alt="Tiếng Hàn Đơn Giản"
+              width={520}
+              height={140}
               priority
-              className="h-9 w-auto"
+              className="hidden sm:block h-12 md:h-14 w-auto"
+            />
+            <Image
+              src="/logo-icon.svg"
+              alt="Tiếng Hàn Đơn Giản"
+              width={140}
+              height={140}
+              priority
+              className="sm:hidden h-11 w-11"
             />
           </Link>
 
