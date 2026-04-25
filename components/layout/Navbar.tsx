@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
@@ -36,9 +37,17 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="font-headline font-bold text-xl text-primary tracking-tight shrink-0 cursor-pointer"
+            className="shrink-0 cursor-pointer flex items-center"
+            aria-label="Huyên Korean — Trang chủ"
           >
-            Huyên Korean
+            <Image
+              src="/logo.svg"
+              alt="Huyên Korean"
+              width={156}
+              height={42}
+              priority
+              className="h-9 w-auto"
+            />
           </Link>
 
           {/* Desktop nav */}
