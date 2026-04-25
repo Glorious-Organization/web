@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
@@ -7,9 +8,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* Brand */}
           <div>
-            <span className="font-headline font-bold text-lg text-primary">
-              Huyên Korean
-            </span>
+            <Image
+              src="/logo.svg"
+              alt="Huyên Korean"
+              width={186}
+              height={50}
+              className="h-11 w-auto"
+            />
+            <span className="sr-only">Huyên Korean</span>
             <p className="mt-2 text-sm text-on-surface-variant max-w-xs">
               Nền tảng học tiếng Hàn toàn diện — theo cấp độ TOPIK, có phân
               tích ngữ pháp và luyện tập tương tác.
