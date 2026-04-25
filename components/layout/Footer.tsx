@@ -11,9 +11,9 @@ export default function Footer() {
             <Image
               src="/logo.svg"
               alt="Tiếng Hàn Đơn Giản"
-              width={520}
-              height={140}
-              className="h-16 w-auto"
+              width={460}
+              height={120}
+              className="h-20 w-auto"
             />
             <span className="sr-only">Tiếng Hàn Đơn Giản</span>
             <p className="mt-2 text-sm text-on-surface-variant max-w-xs">
