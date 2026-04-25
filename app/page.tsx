@@ -3,45 +3,6 @@ import Image from "next/image";
 import HeroStats from "@/components/ui/HeroStats";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 
-const modules = [
-  {
-    href: "/vocabulary",
-    icon: "translate",
-    label: "Từ vựng",
-    desc: "3.000+ từ theo TOPIK",
-    span: "",
-    bg: "bg-primary-container",
-    textColor: "text-on-primary-container",
-  },
-  {
-    href: "/grammar",
-    icon: "menu_book",
-    label: "Ngữ pháp",
-    desc: "Cấu trúc theo level",
-    span: "",
-    bg: "bg-surface-container-lowest",
-    textColor: "text-on-surface",
-  },
-  {
-    href: "/games",
-    icon: "sports_esports",
-    label: "Luyện tập",
-    desc: "Flashcard & trắc nghiệm",
-    span: "",
-    bg: "bg-tertiary-container",
-    textColor: "text-on-tertiary-container",
-  },
-  {
-    href: "/notebook",
-    icon: "book_2",
-    label: "Sổ tay",
-    desc: "Từ vựng & ngữ pháp đã lưu",
-    span: "",
-    bg: "bg-surface-container-lowest",
-    textColor: "text-on-surface",
-  },
-];
-
 const featuredLessons = [
   {
     title: "Chào hỏi cơ bản",
@@ -154,44 +115,6 @@ export default function HomePage() {
 
           {/* Stats bar — animated count-up */}
           <HeroStats />
-        </div>
-      </section>
-
-      {/* ── Module Grid ── */}
-      <section className="max-w-7xl mx-auto px-6 py-20">
-        <div className="flex items-baseline justify-between mb-8">
-          <h2 className="font-headline font-bold text-3xl text-on-surface tracking-tight animate-[fade-in-up_0.6s_ease-out_0s_both]">
-            Con đường đến thành thạo
-          </h2>
-          <span className="text-sm text-on-surface-variant font-label">5 module học</span>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-          {modules.map(({ href, icon, label, desc, bg, textColor }, idx) => (
-            <Link
-              key={href}
-              href={href}
-              className={[
-                "card-shimmer group rounded-2xl p-5 flex flex-col items-start gap-3 min-h-[140px] cursor-pointer",
-                "hover:shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 hover:-translate-y-0.5",
-                "animate-[fade-in-up_0.6s_ease-out_both]",
-                bg,
-                textColor,
-              ]
-                .filter(Boolean)
-                .join(" ")}
-              style={{ animationDelay: `${0.05 + idx * 0.08}s` }}
-            >
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${bg === "bg-surface-container-lowest" ? "bg-surface-container-low" : "bg-white/30"}`}>
-                <span className="material-symbols-outlined text-xl">{icon}</span>
-              </div>
-              <div>
-                <p className="font-headline font-bold text-base leading-tight">
-                  {label}
-                </p>
-                <p className="font-label text-xs mt-1 opacity-60">{desc}</p>
-              </div>
-            </Link>
-          ))}
         </div>
       </section>
 
