@@ -10,12 +10,12 @@ export default function Footer() {
           <div>
             <Image
               src="/logo.svg"
-              alt="Huyên Korean"
-              width={186}
-              height={50}
-              className="h-11 w-auto"
+              alt="Tiếng Hàn Đơn Giản"
+              width={520}
+              height={140}
+              className="h-16 w-auto"
             />
-            <span className="sr-only">Huyên Korean</span>
+            <span className="sr-only">Tiếng Hàn Đơn Giản</span>
             <p className="mt-2 text-sm text-on-surface-variant max-w-xs">
               Nền tảng học tiếng Hàn toàn diện — theo cấp độ TOPIK, có phân
               tích ngữ pháp và luyện tập tương tác.
